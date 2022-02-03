@@ -1,5 +1,3 @@
-// TODO: Include packages needed for this application
-
 
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -8,7 +6,7 @@ const util = require("util");
 // TODO: Create a function to write README file
 const ReadMeTemplate = require("./src/ReadMeTemplate");
 
-// TODO: Create a function to initialize app
+
 const createFile = util.promisify(fs.writeFile);
 
 
@@ -64,11 +62,18 @@ const promptUser = () => {
     ])
 };
 
+// TODO: Create a function to initialize app
+async function init() {
+    try {
+        const data = await promptUser();
+        const createContent = ReadMeTemplate(data);
 
-
-
-
-
+        await createFile('./sample/README.md', createContent);
+        console.log('Successfully created README.md');
+    } catch(err) {
+        console.log(err);
+    }
+};
 
 
 // Function call to initialize app
