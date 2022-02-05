@@ -1,5 +1,5 @@
 
-// function to generate markdown for README
+// function - generate markdown for README
 
 module.exports = generateMarkdown;
 
@@ -7,7 +7,7 @@ const generateMarkdown = data => {
   return `# ${data.title}
   ![Github License](http://img.shields.io/badge/license-${data.license}-blue.svg)
   
-  ## Description
+  
   ${data.description}
   ## Table of Contents
   * [Installation](#installation)
@@ -17,20 +17,19 @@ const generateMarkdown = data => {
   * [Tests](#tests)
   * [Questions](#questions)
   
-  ## Installation
+ 
   ${data.install}
-  ## Usage
+  
   ${data.usage}
-  ## License
-  This project is license under ${data.license}
-  ## Contributing
+  This project is licensed under ${data.license}
+  
   ${data.contributors}
-  ## Tests
+  
   ${data.test}
-  ## Questions
-  If you have any questions, please contact me directly at ${data.email}. You can view more of my projects at https://github.com/${data.github}.
+  
+  If you have any questions, please contact me at ${data.email}. You can view a list of my projects at https://github.com/${data.github}.
   `;
 }
 
-// used to import data from index
+
 module.exports = generateMarkdown;
