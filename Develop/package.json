@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^6.3.1"
+    "inquirer": "^8.2.0",
+    "install": "^0.13.0",
+    "node": "^17.4.0"
   }
 }

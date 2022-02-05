@@ -1,14 +1,6 @@
-
 const inquirer = require("inquirer");
 const fs = require("fs");
-const util = require("util");
-
-// TODO: Create a function to write README file
-const ReadMeTemplate = require("./src/ReadMeTemplate");
-
-
-const createFile = util.promisify(fs.writeFile);
-
+const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
 const promptUser = () => {
@@ -62,19 +54,24 @@ const promptUser = () => {
     ])
 };
 
-// TODO: Create a function to initialize app
-async function init() {
-    try {
-        const data = await promptUser();
-        const createContent = ReadMeTemplate(data);
-
-        await createFile('./sample/README.md', createContent);
-        console.log('Successfully created README.md');
-    } catch(err) {
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, (err) => {
+      if (err) {
         console.log(err);
+      }
+    });
+  }
+  // TODO: Create a function to initialize app
+  function init() {
+    try {
+      promptUser().then((responses) => {
+        writeToFile("ReadMe.md", generateMarkdown(responses));
+        console.log("Successfully created README.md");
+      });
+    } catch (err) {
+      console.log(err);
     }
-};
-
-
-// Function call to initialize app
-init();
+  }
+  
+  init();
